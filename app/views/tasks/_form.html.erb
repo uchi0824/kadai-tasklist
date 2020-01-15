@@ -1,8 +1,8 @@
-<%= form_with(model: task, local: true) do |f| %>
-  <% if task.errors.any? %>
+<%= form_with(model: message, local: true) do |f| %>
+  <% if message.errors.any? %>
     <div id="error_explanation">
       <ul>
-        <% task.errors.full_tasks.each do |msg| %>
+        <% message.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
