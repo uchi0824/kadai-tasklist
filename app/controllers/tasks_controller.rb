@@ -1,17 +1,17 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in
   
   
   def index
-      @tasks = Task.all
+      @tasks = current_user.tasks
   end
 
   def show
   end
 
   def new
-      @task = Task.new
+      @task = current_user.tasks.build
   end
 
   def create
@@ -22,7 +22,7 @@ class TasksController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = 'task が投稿されませんでした'
-      render :'tasks/index'
+      render :'tasks/new'
     end
   end
 
@@ -49,9 +49,6 @@ class TasksController < ApplicationController
   
   private
   
-  def set_task
-    @task = Task.find(params[:id])
-  end
 
   # Strong Parameter
   def task_params

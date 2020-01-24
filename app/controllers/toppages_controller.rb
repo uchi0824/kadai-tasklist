@@ -1,3 +1,0 @@
-class ToppagesController < ApplicationController
-  
-end
